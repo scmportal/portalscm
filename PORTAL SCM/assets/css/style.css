@@ -1,0 +1,221 @@
+/* ============================
+   SCM Portal — Design System
+   ============================ */
+:root {
+  /* Cores marca */
+  --orange:#D95F00; --orange-d:#B04D00; --orange-l:#F07A1A; --orange-pale:#FFF4EC; --orange-glow:rgba(217,95,0,.18);
+  --admin-bg:#18171A; --consult-bg:#4A4A4E; --client-bg:#D95F00;
+
+  /* Superfícies */
+  --bg:#FAFAF7; --card:#FFFFFF; --card-hover:#FEFCF9;
+  --border:#E8E5DD; --border-s:#C8C5BF; --border-strong:#A8A59E;
+
+  /* Texto */
+  --text:#18171A; --muted:#706D68; --faint:#ABA8A2;
+
+  /* Semânticos */
+  --green:#1E7E34; --green-pale:#EAF7EE;
+  --blue:#0F6FA8; --blue-pale:#E6F3FF;
+  --red:#C0392B; --red-pale:#FFF0F0;
+  --amber:#B07900; --amber-pale:#FFF8E1;
+
+  /* Layout */
+  --sw:220px; --th:56px;
+
+  /* Raios */
+  --r-xs:4px; --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px; --r-pill:999px;
+
+  /* Sombras */
+  --sh-xs:0 1px 2px rgba(24,23,26,.04);
+  --sh-sm:0 1px 3px rgba(24,23,26,.06),0 1px 2px rgba(24,23,26,.04);
+  --sh-md:0 4px 12px rgba(24,23,26,.07),0 1px 3px rgba(24,23,26,.04);
+  --sh-lg:0 10px 28px rgba(24,23,26,.10),0 4px 10px rgba(24,23,26,.05);
+  --sh-xl:0 24px 60px rgba(24,23,26,.18),0 8px 20px rgba(24,23,26,.06);
+  --sh-focus:0 0 0 3px rgba(217,95,0,.22);
+  --sh-focus-danger:0 0 0 3px rgba(192,57,43,.22);
+
+  /* Transições */
+  --t-fast:.12s cubic-bezier(.4,0,.2,1);
+  --t-base:.18s cubic-bezier(.4,0,.2,1);
+  --t-slow:.28s cubic-bezier(.4,0,.2,1);
+
+  /* Tipografia */
+  --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'DM Mono','SF Mono',Consolas,monospace;
+
+  /* Safe area iOS */
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-left:env(safe-area-inset-left,0px);
+  --safe-right:env(safe-area-inset-right,0px);
+}
+
+/* ============================
+   RESET + BASE
+   ============================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{height:100%}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+button{
+  font-family:var(--font);
+  cursor:pointer;
+  border:none;
+  background:none;
+  font-size:inherit;
+  color:inherit;
+  letter-spacing:inherit;
+  transition:background var(--t-fast),color var(--t-fast),border-color var(--t-fast),
+             box-shadow var(--t-fast),transform var(--t-fast),opacity var(--t-fast);
+}
+input,select,textarea{
+  font-family:var(--font);
+  font-size:inherit;
+  color:inherit;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* Focus acessível — fica em volta de qualquer elemento interativo focado por teclado */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible{
+  outline:none;
+  box-shadow:var(--sh-focus);
+  border-radius:var(--r-sm);
+}
+
+/* Inputs/selects padrão (quando estilizados via classe .scm-input) */
+.scm-input{
+  width:100%;
+  padding:11px 13px;
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  background:var(--card);
+  color:var(--text);
+  font-size:13px;
+  transition:border-color var(--t-fast),box-shadow var(--t-fast),background var(--t-fast);
+  outline:none;
+}
+.scm-input:hover{border-color:var(--border-s)}
+.scm-input:focus{border-color:var(--orange);box-shadow:var(--sh-focus)}
+.scm-input::placeholder{color:var(--faint)}
+
+/* Scrollbars elegantes */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-s);border-radius:4px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--border-strong)}
+* {scrollbar-width:thin;scrollbar-color:var(--border-s) transparent}
+
+/* Seleção de texto na cor da marca */
+::selection{background:var(--orange-glow);color:var(--text)}
+
+/* ============================
+   ANIMAÇÕES
+   ============================ */
+@keyframes scm-fade-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scm-fade-in-soft{from{opacity:0}to{opacity:1}}
+@keyframes scm-shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+@keyframes scm-spin{to{transform:rotate(360deg)}}
+@keyframes scm-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+.scm-fade-in{animation:scm-fade-in var(--t-slow) both}
+.scm-fade-in-soft{animation:scm-fade-in-soft var(--t-base) both}
+
+/* Skeleton loader */
+.scm-skeleton{
+  background:linear-gradient(90deg,#EFEDE5 0%,#F7F6F1 40%,#EFEDE5 80%);
+  background-size:800px 100%;
+  animation:scm-shimmer 1.6s linear infinite;
+  border-radius:var(--r-sm);
+  display:block;
+}
+
+/* Spinner */
+.scm-spinner{
+  width:18px;height:18px;
+  border:2px solid rgba(217,95,0,.22);
+  border-top-color:var(--orange);
+  border-radius:50%;
+  animation:scm-spin .7s linear infinite;
+  display:inline-block;
+}
+
+/* ============================
+   COMPONENTES UTILITÁRIOS
+   ============================ */
+
+/* Card */
+.scm-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-sm);
+  overflow:hidden;
+  transition:box-shadow var(--t-base),transform var(--t-base),border-color var(--t-base);
+}
+.scm-card-hover:hover{box-shadow:var(--sh-md);border-color:var(--border-s)}
+.scm-card-lift:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+
+/* Stat card hover */
+.scm-stat{transition:box-shadow var(--t-base),transform var(--t-base)}
+.scm-stat:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
+
+/* Action button (ícones em tabelas) */
+.scm-actbtn{transition:transform var(--t-fast),box-shadow var(--t-fast),background var(--t-fast)}
+.scm-actbtn:hover:not(:disabled){transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.scm-actbtn:active:not(:disabled){transform:translateY(0)}
+
+/* Botão genérico (Btn) */
+.scm-btn{
+  position:relative;
+  isolation:isolate;
+  white-space:nowrap;
+  letter-spacing:.01em;
+}
+.scm-btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.scm-btn:not(:disabled):active{transform:translateY(0);box-shadow:none}
+.scm-btn-primary:not(:disabled):hover{box-shadow:0 6px 16px rgba(217,95,0,.32)}
+
+/* Linha de tabela com hover */
+.scm-tr{transition:background var(--t-fast)}
+
+/* Sidebar nav items */
+.scm-nav-item{transition:background var(--t-fast),color var(--t-fast),padding-left var(--t-base)}
+.scm-nav-item:hover:not(.scm-nav-active){padding-left:11px}
+
+/* ============================
+   MOBILE
+   ============================ */
+button,a,[role="button"]{touch-action:manipulation}
+
+@media(max-width:767px){
+  input,select,textarea{font-size:16px!important}
+  input,select{min-height:44px}
+  /* Em telas pequenas, sombras muito sutis */
+  .scm-card{box-shadow:var(--sh-xs)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  aside{transition:none!important}
+}
+
+/* Sidebar drawer mobile — aceleração de hardware */
+aside[data-mobile="true"]{will-change:transform;-webkit-overflow-scrolling:touch}
